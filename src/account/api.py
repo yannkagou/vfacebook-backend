@@ -63,7 +63,7 @@ def login_view(request, *args, **kwargs):
 
     response = Response()
     token = generate_access_token(user)
-    response.set_cookie(key="jwt", value=token, httponly=True, expires=datetime.datetime.utcnow() + datetime.timedelta(days=30))
+    response.set_cookie(key="jwt", value=token, httponly=True, secure=True,samesite='None', expires=datetime.datetime.utcnow() + datetime.timedelta(days=30))
     response.data = {"jwt": token}
     return response
 
